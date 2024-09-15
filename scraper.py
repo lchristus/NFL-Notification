@@ -5,7 +5,7 @@ from bs4 import BeautifulSoup
 import time
 
 gameids = []
-bot = telebot.Telebot(os.environ["TELEGRAM_TOKEN"])
+bot = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 chatid = os.environ["NFLCHAT"]
 hosturl = "nfl-notification.onrender.com/status"
 espnurl = "espn.com/nfl/game/_/gameId/"
