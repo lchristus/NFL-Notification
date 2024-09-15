@@ -12,7 +12,8 @@ espnurl = "espn.com/nfl/game/_/gameId/"
 scores = {}
 
 def start():
-  bot.send_message(chatid, "this still work")
+  while true: 
+    scrape()
   return
 
 def scrape():
