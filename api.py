@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-import scraper.py 
+import scraper
 
 app = FastAPI()
 
@@ -7,7 +7,7 @@ app = FastAPI()
 def root():
     return {"status": "working"}
 
-@app.get("")
+@app.get("/")
 def root():
     scraper.start()
     return {"status": "starting"}
