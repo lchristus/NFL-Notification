@@ -14,7 +14,7 @@ scores = dict()
 def start():
     while True:
         scrape()
-        s.get(hosturl)
+        requests.get(hosturl)
         time.sleep(60)  
 
 def scrape():
