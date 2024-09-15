@@ -12,7 +12,7 @@ espnurl = "espn.com/nfl/game/_/gameId/"
 scores = {}
 
 def start():
-  while true: 
+  while True: 
     scrape()
   return
 
