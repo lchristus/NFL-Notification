@@ -9,7 +9,7 @@ bot = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 chatid = os.environ["NFLCHAT"]
 hosturl = "https://nfl-notification.onrender.com/status"
 espnurl = "https://espn.com/nfl/game/_/gameId/"
-scores = {}
+scores = Dictionary()
 
 def start():
     while True:
@@ -41,7 +41,7 @@ def scrape():
             if scores.get(id) != complete_score:
                 message = f"{names[0].text} {complete_score} {names[1].text}"
                 bot.send_message(chatid, message)
-                scores[id] = complete_score
+                scores.update({id : complete_score})
 
         except requests.RequestException as e:
             print(f"Request error: {e}")
