@@ -9,7 +9,7 @@ bot = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 chatid = os.environ["NFLCHAT"]
 hosturl = "https://nfl-notification.onrender.com/status"
 espnurl = "https://espn.com/nfl/game/_/gameId/"
-scores = Dictionary()
+scores = dict()
 
 def start():
     while True:
