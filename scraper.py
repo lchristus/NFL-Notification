@@ -17,7 +17,7 @@ def start():
   return
 
 def scrape():
-  for id in ids:
+  for id in gameids:
     s = requests.Session()
     page = s.get(espnurl + id)
     soup = BeautifulSoup(page, "html.parser")
