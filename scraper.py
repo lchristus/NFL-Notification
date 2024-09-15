@@ -1,5 +1,6 @@
 import os
-import requests
+import urllib.request
+import json
 import telebot
 from bs4 import BeautifulSoup
 import time
@@ -14,16 +15,17 @@ scores = dict()
 def start():
     while True:
         scrape()
-        requests.get(hosturl)
-        time.sleep(60)  
+        with urllib.request.urlopen(hosturl) as response:
+            response.read()  # Trigger the request and read the response
+        time.sleep(60)
 
 def scrape():
     for id in gameids:
         try:
-            s = requests.Session()
-            page = s.get(espnurl + str(id))
-            page.raise_for_status() 
-            soup = BeautifulSoup(page.content, "html.parser")
+            with urllib.request.urlopen(espnurl + str(id)) as response:
+                page_content = response.read()
+            
+            soup = BeautifulSoup(page_content, "html.parser")
             
             scorecard = soup.find("div", class_="Gamestrip_Competitors relative flex Gamestrip_Competitors--boarder")
             if not scorecard:
@@ -41,9 +43,15 @@ def scrape():
             if scores.get(id) != complete_score:
                 message = f"{names[0].text} {complete_score} {names[1].text}"
                 bot.send_message(chatid, message)
-                scores.update({id : complete_score})
+                scores.update({id: complete_score})
 
-        except requests.RequestException as e:
-            print(f"Request error: {e}")
+        except urllib.error.URLError as e:
+            print(f"URL error: {e}")
+        except urllib.error.HTTPError as e:
+            print(f"HTTP error: {e}")
         except Exception as e:
             print(f"Error parsing page or sending message: {e}")
+
+# To start the process
+if __name__ == "__main__":
+    start()
