@@ -12,7 +12,7 @@ espnurl = "espn.com/nfl/game/_/gameId/"
 scores = {}
 
 def start():
-  bot.sendmessage(chatid, "this still work")
+  bot.send_message(chatid, "this still work")
   return
 
 def scrape():
@@ -27,5 +27,5 @@ def scrape():
       continue
     complete_score = score[0].text+':'+score[1].text
     if scores[id] != complete_score:
-      bot.sendmessage(chatid, names[0].text+' '+complete_score+' '+names[1].text)
+      bot.send_message(chatid, names[0].text+' '+complete_score+' '+names[1].text)
       s.get(hosturl)
