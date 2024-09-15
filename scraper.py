@@ -26,7 +26,7 @@ def scrape():
     if score.size() != 2 or names.site() != 2:
       continue
     complete_score = score[0].text+':'+score[1].text
-    if scores[id] != complete_score:
+    if scores.get(id) != complete_score:
       bot.send_message(chatid, names[0].text+' '+complete_score+' '+names[1].text)
       s.get(hosturl)
       scores.update({id : complete_score})
