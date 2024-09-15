@@ -4,7 +4,7 @@ import telebot
 from bs4 import BeautifulSoup
 import time
 
-gameids = []
+gameids = [401671807]
 bot = telebot.TeleBot(os.environ["TELEGRAM_TOKEN"])
 chatid = os.environ["NFLCHAT"]
 hosturl = "nfl-notification.onrender.com/status"
@@ -29,3 +29,4 @@ def scrape():
     if scores[id] != complete_score:
       bot.send_message(chatid, names[0].text+' '+complete_score+' '+names[1].text)
       s.get(hosturl)
+      scores.update({id : complete_score})
